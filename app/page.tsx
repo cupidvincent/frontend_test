@@ -237,7 +237,7 @@ export default function Home() {
     },
   ];
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main}`}>
       <Gallery users={users} />
     </main>
   );
