@@ -9,6 +9,29 @@
   justify-content: center;
   align-items: center;
 
+  .field .location_map:hover {
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .post-btn-container {
+    .post-btn {
+      padding: 0.5rem 1rem;
+      border: solid black 1px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: black;
+      font-weight: 700;
+    }
+
+    .post-btn:hover, .post-btn:active, .post-btn:focus {
+      text-decoration: none;
+      color: black;
+    }
+
+    padding: 1.1rem 0;
+  }
+
   > .body {
     z-index: 220;
     color: #172b4d;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "boring-avatars";
 import {
   FaRegCircleXmark,
@@ -8,7 +8,7 @@ import {
   FaPhone,
   FaEnvelope,
 } from "react-icons/fa6";
-
+import Link from 'next/link'
 import Modal from "./modal";
 
 import { User } from "./types/user";
@@ -16,10 +16,21 @@ import { User } from "./types/user";
 export type GalleryProps = {
   users: User[];
 };
+
+type LocationType = {
+    lat: String,
+    lng: String
+}
+
 const Gallery = ({ users }: GalleryProps) => {
-  const [usersList, setUsersList] = useState(users);
+  const [usersList, setUsersList] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const fetchUser = async () => {
+        const datas = await fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json()).then(res => res)
+        setUsersList([...datas])
+    }
 
   const handleModalOpen = (id: number) => {
     const user = usersList.find((item) => item.id === id) || null;
@@ -35,11 +46,20 @@ const Gallery = ({ users }: GalleryProps) => {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    fetchUser()
+  },[])
+
+  const gotoMap = (location: LocationType) => {
+    window.open(`http://maps.google.com/?ie=UTF8&hq=&ll=${location.lng},${location.lat}&z=13`, '_blank')
+  }
+  
+
   return (
     <div className="user-gallery">
       <h1 className="heading">Users</h1>
       <div className="items">
-        {usersList.map((user, index) => (
+        { usersList && usersList.map((user, index) => (
           <div
             className="item user-card"
             key={index}
@@ -91,9 +111,12 @@ const Gallery = ({ users }: GalleryProps) => {
                   <div className="name">
                     {selectedUser.name} ({selectedUser.username})
                   </div>
+                  <div className="post-btn-container">
+                    <Link className={'post-btn'} href={`/posts/${selectedUser.id}`}>See posts</Link>
+                  </div>
                   <div className="field">
                     <FaLocationDot className="icon" />
-                    <div className="data">{`${selectedUser.address.street}, ${selectedUser.address.suite}, ${selectedUser.address.city}`}</div>
+                    <div className="data location_map" onClick={() => gotoMap(selectedUser.address.geo)}>{`${selectedUser.address.street}, ${selectedUser.address.suite}, ${selectedUser.address.city}`}</div>
                   </div>
                   <div className="field">
                     <FaPhone className="icon" />
