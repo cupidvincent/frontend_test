@@ -1,0 +1,25 @@
+.post-page {
+    padding: 6rem;
+}
+
+@media (max-width: 701px) {
+    .post-page {
+        padding: 1rem;
+    }
+}
+
+.postTitle {
+    font-size: 1.1rem;
+}
+
+.postDescription {
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.eachPost-container {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+}
