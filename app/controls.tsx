@@ -1,6 +1,14 @@
+import { type } from "os";
 import Select from "react-select";
 
-const Controls = () => {
+type ControlsType= {
+  srtd: () => void,
+  srtf: () => void,
+  sortDirection: any,
+  sortField: any
+}
+
+const Controls = ({srtd, srtf, sortDirection, sortField}: ControlsType) => {
   const fieldOptions = [
     { label: "Name", value: "name" },
     { label: "Company", value: "company" },
@@ -17,7 +25,7 @@ const Controls = () => {
         <label htmlFor="sort-field" className="label">
           Sort Field
         </label>
-        <Select options={fieldOptions} inputId="sort-field" className="input" />
+        <Select options={fieldOptions} inputId="sort-field" className="input" onChange={srtf}/>
       </div>
       <div className="form-group group">
         <label htmlFor="sort-direction" className="label">
@@ -27,6 +35,7 @@ const Controls = () => {
           options={directionOptions}
           inputId="sort-direction"
           className="input"
+          onChange={srtd}
         />
       </div>
     </div>
