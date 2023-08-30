@@ -8,6 +8,7 @@ import {
   FaPhone,
   FaEnvelope,
 } from "react-icons/fa6";
+
 import Modal from "./modal";
 
 import { User } from "./types/user";
@@ -92,7 +93,7 @@ const Gallery = ({ users }: GalleryProps) => {
                   </div>
                   <div className="field">
                     <FaLocationDot className="icon" />
-                    <div className="value data">{`${selectedUser.address.street}, ${selectedUser.address.suite}, ${selectedUser.address.city}`}</div>
+                    <div className="data value">{`${selectedUser.address.street}, ${selectedUser.address.suite}, ${selectedUser.address.city}`}</div>
                   </div>
                   <div className="field">
                     <FaPhone className="icon" />
