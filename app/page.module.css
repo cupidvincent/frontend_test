@@ -7,6 +7,18 @@
   min-height: 100vh;
 }
 
+@media  (max-width: 1120px) {
+  .main {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 701px){
+  .main {
+    padding: 1rem;
+  }
+}
+
 .description {
   display: inherit;
   justify-content: inherit;
