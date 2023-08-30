@@ -38,7 +38,7 @@ const Gallery = ({ users }: GalleryProps) => {
   return (
     <div className="user-gallery">
       <h1 className="heading">Users</h1>
-      <div className={`items `}>
+      <div className="items">
         {usersList.map((user, index) => (
           <div
             className="item user-card"
